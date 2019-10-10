@@ -1,0 +1,61 @@
+
+-- A simple
+-- Table structure for table `exercise_type`
+--
+
+CREATE TABLE exercise_type (
+  exid int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  name varchar(50) NOT NULL UNIQUE,
+  description varchar(500) DEFAULT NULL,
+  calories_per_hr int(11)
+) ENGINE=MYISAM;
+
+ALTER TABLE exercise_type AUTO_INCREMENT = 1000;
+
+
+INSERT INTO exercise_type (name, description) VALUES ('running', 'Treadmill running');
+INSERT INTO exercise_type (name, description) VALUES ('swimming', 'Lap Swimming');
+INSERT INTO exercise_type (name, description) VALUES ('cycling', 'Outdoor paved road cycling');
+
+
+-- --------------------------------------------------------
+--
+-- Table structure for table `user_profile`
+--
+
+CREATE TABLE user_profile(
+  fname varchar(20) DEFAULT NULL,
+  lname varchar(20) DEFAULT NULL,
+  email varchar(50) NOT NULL UNIQUE,
+  phone varchar(20),
+  bd date,
+  weight float DEFAULT NULL,
+  height float DEFAULT NULL,
+  password varchar(30),
+  created_on timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  uid int(20) NOT NULL PRIMARY KEY AUTO_INCREMENT
+) ENGINE=MYISAM;
+
+ALTER TABLE user_profile AUTO_INCREMENT = 1000;
+
+INSERT INTO user_profile(email) VALUES('ken@csu.edu');
+
+--  --------------------------------------------
+-- table structure to hold physical activity/exercise log data
+CREATE TABLE exercise_log (
+  userid int(20) NOT NULL, 
+  exid int(11) NOT NULL, 
+  done_on datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  duration_reps float NOT NULL,
+  dist_weight float NOT NULL,
+  calories int(11),
+  PRIMARY KEY(exid,userid, done_on, duration_reps),
+  CONSTRAINT fk_userid FOREIGN KEY(userid) REFERENCES user_profile(userid) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_exid FOREIGN KEY(exid) REFERENCES exercise_type(exid) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=MYISAM;
+
+INSERT INTO exercise_log (userid, exid, duration_reps, dist_weight) VALUES
+(1001, 1001, 30.0, 120.0);
+
+
+

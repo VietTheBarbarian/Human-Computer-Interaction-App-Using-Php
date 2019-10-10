@@ -1,0 +1,61 @@
+
+<html>
+
+<script> 
+
+function showHideExcerciseInfo(){
+if(document.getElementById('Running').checked ){
+document.getElementById('laps').style.display='block';
+} else {
+document.getElementById('laps').style.display='none';
+}
+}
+
+
+ function showHideExcercise2Info(){
+if(document.getElementById('Swimming').checked ){
+document.getElementById('lap2').style.display='block';
+} else {
+document.getElementById('lap2').style.display='none';
+}
+}
+ 
+ 
+ 
+ 
+</script> 
+
+  <body>
+
+<form action="f1.php" method="GET">
+<h2> Exercise </h2>
+            <form action="f1.php" method="GET">
+			<fieldset><legend> Running/Swimming Routines</legend>
+			<!-- Give user selection between the two excercise --> 
+			<p>What excercise are you doing today?<br/>
+  <input type="checkbox" checked  id="Running" name="Running" value="Running" onclick="showHideExcerciseInfo()" > Running<br>
+
+
+  <input type="checkbox" checked   id="Swimming" name="Swimming" value="Swimming" onclick="showHideExcercise2Info()"> Swimming<br>
+			<!-- Ask user how long they want to do these excercise  --> 
+			<p> Make a schedule for your excercise <br/> 
+			<input name="time" type="text"  size="12" /></p>
+			
+			
+		<fieldset id ="laps">
+<label> How many lap would you like to do for running?</label><input type="text" name="lap"  />
+			</fieldset>	
+			
+			
+		<fieldset id ="lap2">
+<label> How many  lap you like to do for swimming?</label><input type="text" name="lap2"  />
+			</fieldset>				
+
+  <input type="submit" value="Submit">
+  
+</form> 
+
+
+  </body>
+
+</html>
